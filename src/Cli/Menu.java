@@ -1,5 +1,7 @@
 package Cli;
 
+
+
 public class Menu {
 	
 	String menu[] = { "List all workers", "List all Sysadmins", "List all Receptionists", "List all Veterinarians",
@@ -9,7 +11,7 @@ public class Menu {
 
 	};
 
-	String queueMenu[] = { "Show animals in a queue", "Show each queue", "Run a queue" };
+	
 
 	public Menu() {
 		
@@ -23,13 +25,7 @@ public class Menu {
 		System.out.println("Press 0 to stop the programm.");
 
 	}
-	public void displayQueueMenu() {
-		System.out.println("Please choose one of the following options: ");
-		for (int i = 0; i < queueMenu.length; i++) {
-			System.out.println("Press " + (i + 1) + " to " + queueMenu[i]);
-		}
-		System.out.println("Press 0 to come back to main menu.");
 
-	}
+	
 
 }

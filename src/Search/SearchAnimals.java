@@ -11,7 +11,6 @@ import Cli.Cli;
 
 public class SearchAnimals {
 
-
 	ArrayList<Animal> allAnimals;
 
 	public SearchAnimals(ArrayList<Animal> allAnimals) {
@@ -24,22 +23,19 @@ public class SearchAnimals {
 		String Name = null;
 		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Please type in a name of an animal: ");
-		
+
 		try {
 			Name = r.readLine();
-			
+
 		} catch (IOException e) {
 
 			e.getMessage();
 		}
-		
-		if (Name.matches(".*\\d.*")) {
-				
-				throw new IOException("You have to use only charachters");
-			}
-		
 
-		
+		if (Name.matches(".*\\d.*")) {
+
+			throw new IOException("You have to use only characters");
+		}
 
 		searching(Name);
 	}

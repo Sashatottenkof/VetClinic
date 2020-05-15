@@ -21,8 +21,8 @@ public class StaffAssembler {
 
 	private int NumberOfSysadmins = 5;
 	private int NumberOfReceptionists = 5;
-	private int NumberOfNurses = 10;
-	private int NumberOfVets = 10;
+	private int NumberOfNurses = 15;
+	private int NumberOfVets = 5;
 	private int NumberOfTrainees = 10;
 
 	SysadminCreator newSysadmin = new SysadminCreator();

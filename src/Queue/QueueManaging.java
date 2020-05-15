@@ -8,18 +8,19 @@ import Staff.Medical.Vet;
 
 public class QueueManaging {
 
-	ArrayList<Animal> allAnimals;
-	ArrayList<Vet> vets;
-	ArrayList<Animal> animalsInQueue = new ArrayList<Animal>();
+	private ArrayList<Animal> allAnimals;
+	private ArrayList<Vet> vets;
+
 	private int capacity = 5;
 	Random r = new Random();
+	private QueueMenu menu = new QueueMenu();
+	int option;
 
 	public QueueManaging(ArrayList<Animal> allAnimals, ArrayList<Vet> vets) {
 
 		this.allAnimals = allAnimals;
 		this.vets = vets;
 		giveQueue();
-
 	}
 
 	/**
@@ -30,7 +31,7 @@ public class QueueManaging {
 	 * 
 	 * @return
 	 */
-	public Queue firstQueue() {
+	public Queue defaultQueue() {
 		Queue queue = new Queue(capacity);
 		int index;
 
@@ -39,46 +40,81 @@ public class QueueManaging {
 			index = r.nextInt(allAnimals.size());
 			queue.enQueue(allAnimals.get(index));
 
-			animalsInQueue.add(allAnimals.get(index));
 			allAnimals.remove(index);
 
 		}
-//		queue.show();
 
 		return queue;
 	}
 
-//	public void nextAnimal() {
-//
-//		q.enQueue(allAnimals.get(r.nextInt(allAnimals.size())));
-//		q.deQueue();
-//		q.show();
-//	}
-
 	public void giveQueue() {
 		for (Vet v : vets) {
 
-			v.setQueue(firstQueue());
+			v.setQueue(defaultQueue());
 		}
 
 	}
 
-	public ArrayList<Animal> getAnimalsInQueue() {
-		return animalsInQueue;
-	}
-
-	public void setAnimalsInQueue(ArrayList<Animal> animalsInQueue) {
-		this.animalsInQueue = animalsInQueue;
-	}
-
-	public void showEachQueue() {
+	public void animalsInQueue() {
 
 		for (Vet v : vets) {
 
-			System.out.println(v.getPosition() + "\r\n" + v.getName() + " Has these animals for checking: " + "\r\n");
+			System.out.println("\r\n" + "==================================" + "\r\n" + v.getPosition() + ": "
+					+ v.getName() + "\r\n" + "\r\n");
 
 			v.getQueue().show();
 		}
+	}
+
+	public void displayQueuesMenu() {
+		menu.displayQueueMenu();
+	}
+
+	public void displayQueues() {
+		menu.displayQueue(vets);
+	}
+
+	public void displayOperations() {
+
+		menu.displayOperations();
+	}
+
+	public Queue specificlQueue(int option) {
+		Queue queue = null;
+		this.option = option - 1;
+		queue = vets.get(this.option).getQueue();
+
+		return queue;
+
+	}
+
+	/**
+	 * This method process the first animal in a queue "option" parameter has been
+	 * defined into specificQueue method therefore we don't have to pass in again
+	 * 
+	 * @param queue
+	 */
+	public void cureAnimal(Queue queue) {
+
+		vets.get(option).getQueue().deQueue();
+
+		System.out.println(vets.get(option).getName() + "\r\n" + "===========================" + "\r\n");
+		queue.show();
+
+	}
+
+	/**
+	 * This methods adds animals in a queue
+	 * @param queue
+	 */
+	public void takeAnimal(Queue queue) {
+		int index;
+		index = r.nextInt(allAnimals.size());
+		vets.get(option).getQueue().enQueue(allAnimals.get(index));
+		allAnimals.remove(index);
+
+		System.out.println(vets.get(option).getName() + "\r\n" + "===========================" + "\r\n");
+		queue.show();
 	}
 
 }

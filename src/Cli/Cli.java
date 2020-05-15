@@ -6,8 +6,9 @@ import java.io.InputStreamReader;
 
 import Creator.AnimalsAssembler;
 import Creator.StaffAssembler;
-
+import Queue.Queue;
 import Queue.QueueManaging;
+import Queue.QueueMenu;
 import Search.SearchAnimals;
 import Search.SearchStaff;
 
@@ -17,127 +18,157 @@ public class Cli {
 	AnimalsAssembler Animals = new AnimalsAssembler();
 	SearchAnimals searchAnimal = new SearchAnimals(Animals.getAllAnimals());
 	SearchStaff searchStaff = new SearchStaff(Staff.getAllStaff());
-	QueueManaging queue = new QueueManaging(Animals.getAllAnimals(), Staff.getVetsList());
-	
-	
+	QueueManaging queueManager = new QueueManaging(Animals.getAllAnimals(), Staff.getVetsList());
+
 	Menu menu = new Menu();
-	
 
 	BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-
-
 
 	public Cli() {
 		execute();
 
 	}
 
-
-
 	public int readInput() {
-
 		int option = -1;
 		try {
 			option = Integer.parseInt(r.readLine());
 
 		} catch (IOException | NumberFormatException e) {
 
-			System.out.println("That's not a valid option, please type 0-9");
+			System.out.println("That's not a valid option, choose one of the presented numbers");
 
 		}
 		return option;
 	}
 
 	public void execute() {
-
 		int option = -1;
-
 		do {
 			do {
 				menu.displayMenue();
 				option = readInput();
 
 			} while (!validOption(option));
-
-			if (option == 1) {
+			switch (option) {
+			case 1:
 				Staff.showAllStaff();
-
-			}
-
-			else if (option == 2) {
+				break;
+			case 2:
 				Staff.showSysadmins();
-
-			} else if (option == 3) {
+				break;
+			case 3:
 				Staff.showReceptionists();
-
-			} else if (option == 4) {
+				break;
+			case 4:
 				Staff.showVets();
-
-			} else if (option == 5) {
+				break;
+			case 5:
 				Staff.showNurses();
-				;
-
-			} else if (option == 6) {
+				break;
+			case 6:
 				Staff.showTrainees();
-
-			}
-
-			else if (option == 7) {
-//				Staff.showTrainees();
-
-			} else if (option == 8) {
+				break;
+			case 7:
+				Staff.showSysadmins();
+				break;
+			case 8:
 				try {
 					searchStaff.userRequest();
 				} catch (IOException e) {
 
 					e.printStackTrace();
 				}
-
-			}
-			if (option == 9) {
+				break;
+			case 9:
 				Animals.showAllAnimList();
-
-			}
-			if (option == 10) {
+				break;
+			case 10:
 				Animals.showCatsList();
-
-			}
-			if (option == 11) {
+				break;
+			case 11:
 				Animals.showDogsList();
-
-			}
-			if (option == 12) {
+				break;
+			case 12:
 				Animals.showTigersList();
-
-			}
-			if (option == 13) {
+				break;
+			case 13:
 				try {
 					searchAnimal.userRequest();
 				} catch (IOException e) {
 
 					e.printStackTrace();
 				}
-
+				break;
+			case 14:
+				SubMenu();
 			}
-			if (option == 14) {
-				do {
-					do {
-						menu.displayQueueMenu();
-						option = readInput();
 
-					} while (!validOptionQueue(option));
+		} while (option != 0);
+	}
 
-					if (option == 1) {
-						queue.getAnimalsInQueue();
-					} else if (option == 2) {
-						queue.showEachQueue();
-					} else if (option == 3) {
-						queue.showEachQueue();
-					}
+	public void SubMenu() {
+		int option = -1;
+		do {
+			do {
+				queueManager.displayQueuesMenu();
+				option = readInput();
 
-				} while (option != 5);
+			} while (!validOptionQueue(option));
+
+			switch (option) {
+			case 1:
+				queueManager.animalsInQueue();
+				break;
+			case 2:
+				queueMenu();
+				break;
 			}
 		} while (option != 0);
+
+	}
+
+	public void queueMenu() {
+		int option = -1;
+
+		do {
+			do {
+				queueManager.displayQueues();
+				option = readInput();
+
+			} while (!validOptionQueue(option));
+			if (option > 0) {
+				queueManager.specificlQueue(option).show();
+				// we pass the option to the method to get back a required queue
+				optionsMenu(queueManager.specificlQueue(option));
+			}
+
+		} while (option != 0);
+
+	}
+
+	public void optionsMenu(Queue queue) {
+		int option = -1;
+
+		do {
+			do {
+				queueManager.displayOperations();
+				option = readInput();
+
+			} while (!validOptionQueue(option));
+			switch (option) {
+			case 1:
+				queueManager.cureAnimal(queue);
+
+				break;
+			case 2:
+				queueManager.takeAnimal(queue);
+
+				break;
+			}
+
+		} while (option != 0);
+
 	}
 
 	public boolean validOption(int option) {

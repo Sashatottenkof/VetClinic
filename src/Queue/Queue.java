@@ -60,10 +60,13 @@ public class Queue {
 	}
 
 	public void show() {
-
-		System.out.println("Elements: ");
+		int n = 1;
+		System.out.println("Animals in queue: " + "\r\n");
 		for (int i = 0; i < size; i++) {
-			System.out.println(animalQueue[(front + i) % capacity] + " ");
+			
+			System.out.println("Place in queue: " + n + animalQueue[(front + i) % capacity] + " " );
+			n++;
 		}
 	}
+	
 }
