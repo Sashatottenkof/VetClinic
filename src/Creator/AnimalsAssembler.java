@@ -2,13 +2,16 @@ package Creator;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Animals.Animal;
 import Animals.Cat;
 import Animals.Dog;
+import Animals.Snake;
 import Animals.Tiger;
 import Creator.Animals.CatCreator;
 import Creator.Animals.DogCreator;
+import Creator.Animals.SnakeCreator;
 import Creator.Animals.TigerCreator;
 import ReadFromFile.ReadAnimals;
 import ReadFromFile.ReadAnimalsDiseases;
@@ -18,6 +21,7 @@ public class AnimalsAssembler {
 	private final int NumberOfCats = 300;
 	private final int NumberOfDogs = 350;
 	private final int NumberOfTigers = 350;
+	private final int NumberOfSnakes = 350;
 
 	ArrayList<String> animNamesList = new ArrayList<String>();
 	ArrayList<String> animDiseasesList = new ArrayList<String>();
@@ -28,10 +32,12 @@ public class AnimalsAssembler {
 	CatCreator newCat = new CatCreator();
 	DogCreator newDog = new DogCreator();
 	TigerCreator newTiger = new TigerCreator();
+	SnakeCreator newSnake = new SnakeCreator();
 
-	ArrayList<Cat> catsList = new ArrayList<Cat>();
-	ArrayList<Dog> dogsList = new ArrayList<Dog>();
-	ArrayList<Tiger> tigersList = new ArrayList<Tiger>();
+	List<Cat> catsList = new ArrayList<Cat>();
+	List<Dog> dogsList = new ArrayList<Dog>();
+	List<Tiger> tigersList = new ArrayList<Tiger>();
+	List<Snake> snakesList = new ArrayList<Snake>();
 
 	ArrayList<Animal> allAnimals = new ArrayList<Animal>();
 
@@ -41,6 +47,7 @@ public class AnimalsAssembler {
 		createCatsList();
 		createDogsList();
 		createTigersList();
+		createSnakesList();
 		creatAllAnimalsList();
 	}
 
@@ -101,6 +108,16 @@ public class AnimalsAssembler {
 		}
 
 	}
+	/**
+	 * The method creates Array list of Snakes by calling "getAnimal" method
+	 *  as many times as we need snakes
+	 */
+	public void createSnakesList() {
+		for (int i = 0; i < NumberOfSnakes; i++) {
+			snakesList.add((Snake) newSnake.getAnimal(animNamesList, animDiseasesList));
+		}
+
+	}
 
 	/**
 	 * This method creates a list of all animals in the clinic by combining list of each animal type
@@ -110,6 +127,7 @@ public class AnimalsAssembler {
 		allAnimals.addAll(catsList);
 		allAnimals.addAll(dogsList);
 		allAnimals.addAll(tigersList);
+		allAnimals.addAll(snakesList);
 
 	}
 
@@ -149,6 +167,15 @@ public class AnimalsAssembler {
 	public void showTigersList() {
 
 		for (Tiger v : tigersList) {
+
+			System.out.println(v.toString());
+
+		}
+
+	}
+	public void showSnakesList() {
+
+		for (Snake v : snakesList) {
 
 			System.out.println(v.toString());
 

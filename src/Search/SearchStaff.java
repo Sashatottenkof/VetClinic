@@ -22,13 +22,12 @@ public class SearchStaff {
 	public void userRequest() {
 		String Name = null;
 
-		
 		do {
 			do {
-				System.out.println("Please type in full name of an employee:" +  "\r\n" + "(Press 0 to come back)");
+				System.out.println("Please type in full name of an employee:" + "\r\n" + "(Press 0 to come back)");
 				try {
 					Name = r.readLine();
-					
+
 					// thrown an error if request has numbers
 
 					if (Name.matches(".*\\d.*") && !Name.matches("0")) {
@@ -49,8 +48,9 @@ public class SearchStaff {
 	}
 
 	/**
-	 * The request does't have to have numbers
-	 * otherwise method will keep asking to enter proper name
+	 * The request does't have to have numbers otherwise method will keep asking to
+	 * enter proper name
+	 * 
 	 * @param Name
 	 * @return
 	 */
@@ -59,8 +59,9 @@ public class SearchStaff {
 	}
 
 	/**
-	 * method implements linear search
-	 * Method searches for a full name regardless its case
+	 * method implements linear search Method searches for a full name regardless
+	 * its case
+	 * 
 	 * @param Name
 	 */
 	public void searching(String Name) {

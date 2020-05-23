@@ -8,7 +8,7 @@ public class QueueMenu {
 
 	private String queueMenu[] = { "Show all animals in a queue", "Show list of queues" };
 	private ArrayList<Vet> queue;
-	private String operations[] = { "Process an animal in a queue", "Take animal in a queue" };
+	private String operations[] = { "Look after first animal in a queue", "Take next animal in a queue" };
 	int option;
 
 	public QueueMenu() {

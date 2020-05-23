@@ -155,6 +155,9 @@ public class Cli {
 				Animals.showTigersList();
 				break;
 			case 5:
+				Animals.showSnakesList();
+				break;
+			case 6:
 				searchAnimal.userRequest();
 
 				break;

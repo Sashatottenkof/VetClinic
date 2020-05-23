@@ -136,7 +136,7 @@ public class QueueManaging {
 	}
 
 	/**
-	 * This method adds new animal in a queue,and prints queue again
+	 * This method adds new animal in the end a queue,and prints queue again
 	 * 
 	 * @param queue
 	 */

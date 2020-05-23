@@ -7,10 +7,6 @@ public class Sysadmin extends Adminisration{
 		position = "System Administrator";
 	}
 
-	@Override
-	public void doYourDuty() {
-		System.out.println("Plays video games");
-		
-	}
+
 
 }

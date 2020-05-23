@@ -7,10 +7,6 @@ public class Receptionist extends Adminisration {
 		position = "Receptionist";
 	}
 
-	@Override
-	public void doYourDuty() {
-		System.out.println("Get calls from pets owners");
-		
-	}
+
 
 }

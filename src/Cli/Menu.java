@@ -13,7 +13,7 @@ public class Menu {
 	};
 	
 	String animalsMenu[] = {
-			"List all Animals", "List all Cats", "List all Dogs", "List all Tigers", "Search for an anmal",
+			"List all Animals", "List all Cats", "List all Dogs", "List all Tigers", "List all Snakes", "Search for an anmal",
 
 	};
 	
@@ -31,7 +31,7 @@ public class Menu {
 
 		System.out.println("Please choose one of the following options: ");
 		for (int i = 0; i < menu.length; i++) {
-			System.out.println("Press " + (i + 1) + " to " + menu[i]);
+			System.out.println("Press " + (i + 1) + " to see " + menu[i]);
 		}
 		System.out.println("Press 0 to stop the programm.");
 
