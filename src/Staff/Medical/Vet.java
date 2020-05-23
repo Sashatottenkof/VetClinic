@@ -4,6 +4,7 @@ import Queue.Queue;
 
 public class Vet extends Medical{
 	
+	// each Vet has a Variable Queue
 	Queue queue;
 
 	public Vet (String name, int Id, int salaryLvl) {
@@ -14,6 +15,7 @@ public class Vet extends Medical{
 	public Queue getQueue() {
 		return queue;
 	}
+
 
 	public void setQueue(Queue queue) {
 		this.queue = queue;

@@ -1,5 +1,9 @@
 package Staff;
 
+/**
+ * All staff members have its Id, name, salary level, and position
+ *
+ */
 public abstract class Staff {
 	protected String name;
 	protected int Id;
@@ -42,7 +46,7 @@ public abstract class Staff {
 	@Override
 	public String toString() {
 		return "\r\n" + " position: " + position +  "\r\n" +" name: " + name + "\r\n" +" Id: " + Id + 
-				 "\r\n" +" salary " + salaryLvl  + "\r\n" + "\r\n" + " ------------------------ ";
+				 "\r\n" +" salary level: " + salaryLvl  + "\r\n" + "\r\n" + " ------------------------ ";
 	}
 	
 	

@@ -18,5 +18,14 @@ public abstract class AnimalsCreator {
 	AnimAgeGen animAge = new AnimAgeGen();
 	AnimDiseaseGen animDisease = new AnimDiseaseGen();
 
+	/**
+	 *  * This method passes list of animals names and list of diseases,
+	 * then it picks up a random name, disease, age
+	 * and  eventually returns Animal
+	 * 
+	 * @param animNamesList
+	 * @param animDiseasesList
+	 * @return
+	 */
 	public abstract Animal getAnimal(ArrayList<String> animNamesList,ArrayList<String> animDiseasesList);
 }

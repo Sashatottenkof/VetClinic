@@ -15,7 +15,7 @@ public class ReadStaff {
 	ArrayList<String> allNames = new ArrayList<String>();
 
 	/**
-	 * This method reads names from a text file and stores it into an arraylist
+	 * This method reads names from a text file and stores it into an Array list
 	 * 
 	 * @throws IOException
 	 */

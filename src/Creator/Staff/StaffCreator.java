@@ -17,6 +17,16 @@ public abstract class StaffCreator {
 	StaffSalaryGen randomSalary = new StaffSalaryGen();
 	IDStaffGen randomId = new IDStaffGen();
 
+	/**
+	 * 
+	 *This method  when implemented passes list of names,
+	 * then it picks up a random name, salary level, assigns new Id
+	 * and  eventually returns Staff member
+	 * 
+	 * 
+	 * @param ListOfNames
+	 * @return
+	 */
 	public abstract Staff getStaffMember(ArrayList<String> ListOfNames);
 
 }

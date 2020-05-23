@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 import Creator.AnimalsAssembler;
 import Creator.StaffAssembler;
+import PerformingTask.StaffPerformance;
 import Queue.Queue;
 import Queue.QueueManaging;
 import Queue.QueueMenu;
@@ -13,22 +14,28 @@ import Search.SearchAnimals;
 import Search.SearchStaff;
 
 public class Cli {
+	// all objects that program based on, are initialized here
 
 	StaffAssembler Staff = new StaffAssembler();
 	AnimalsAssembler Animals = new AnimalsAssembler();
 	SearchAnimals searchAnimal = new SearchAnimals(Animals.getAllAnimals());
 	SearchStaff searchStaff = new SearchStaff(Staff.getAllStaff());
 	QueueManaging queueManager = new QueueManaging(Animals.getAllAnimals(), Staff.getVetsList());
+	StaffPerformance activities = new StaffPerformance(Staff.getReceptionistList(), Staff.getSysadminsList());
 
 	Menu menu = new Menu();
 
 	BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 
 	public Cli() {
-		execute();
+		mainMenu();
 
 	}
 
+	/**
+	 * The method reads users input to convert it in "option" variable
+	 * @return
+	 */
 	public int readInput() {
 		int option = -1;
 		try {
@@ -42,15 +49,51 @@ public class Cli {
 		return option;
 	}
 
-	public void execute() {
+	/**
+	 * Main menu of the program
+	 * 
+	 */
+	public void mainMenu() {
 		int option = -1;
+		System.out.println("Welcom to our Clinic!");
 		do {
 			do {
-				menu.displayMenue();
+				System.out.println("Main menu:");
+				menu.displayMenu();
 				option = readInput();
 
 			} while (!validOption(option));
 			switch (option) {
+
+			case 1:
+				staffMenu();
+				break;
+			case 2:
+				animalsMenu();
+				break;
+			case 3:
+				queueMenu();
+				break;
+			}
+		} while (option != 0);
+
+	}
+
+	/**
+	 * Sub menu of main menu
+	 * displays information about Staff
+	 */
+	public void staffMenu() {
+		int option = -1;
+		do {
+			do {
+				System.out.println("Staff details:");
+				menu.displayStaffMenu();
+				option = readInput();
+
+			} while (!validOption(option));
+			switch (option) {
+
 			case 1:
 				Staff.showAllStaff();
 				break;
@@ -70,47 +113,64 @@ public class Cli {
 				Staff.showTrainees();
 				break;
 			case 7:
-				Staff.showSysadmins();
+				activities.showAllActivities();
 				break;
 			case 8:
-				try {
-					searchStaff.userRequest();
-				} catch (IOException e) {
 
-					e.printStackTrace();
-				}
+				searchStaff.userRequest();
+
 				break;
-			case 9:
+			}
+		} while (option != 0);
+
+	}
+
+	/**
+	 * 	
+	 * Sub menu of main menu
+	 * displays information about Animals
+	 */
+	 
+	public void animalsMenu() {
+		int option = -1;
+
+		do {
+			do {
+				System.out.println("Animals details:");
+				menu.displayAnimalsMenu();
+				option = readInput();
+
+			} while (!validOption(option));
+			switch (option) {
+			case 1:
 				Animals.showAllAnimList();
 				break;
-			case 10:
+			case 2:
 				Animals.showCatsList();
 				break;
-			case 11:
+			case 3:
 				Animals.showDogsList();
 				break;
-			case 12:
+			case 4:
 				Animals.showTigersList();
 				break;
-			case 13:
-				try {
-					searchAnimal.userRequest();
-				} catch (IOException e) {
+			case 5:
+				searchAnimal.userRequest();
 
-					e.printStackTrace();
-				}
 				break;
-			case 14:
-				SubMenu();
-			}
 
+			}
 		} while (option != 0);
 	}
 
-	public void SubMenu() {
+	/**
+	 * Displays queue menu
+	 */
+	public void queueMenu() {
 		int option = -1;
 		do {
 			do {
+				System.out.println("Queue details:");
 				queueManager.displayQueuesMenu();
 				option = readInput();
 
@@ -121,14 +181,17 @@ public class Cli {
 				queueManager.animalsInQueue();
 				break;
 			case 2:
-				queueMenu();
+				queueSubMenu();
 				break;
 			}
 		} while (option != 0);
 
 	}
 
-	public void queueMenu() {
+	/**
+	 * sub menu of queue menu
+	 */
+	public void queueSubMenu() {
 		int option = -1;
 
 		do {
@@ -147,6 +210,11 @@ public class Cli {
 
 	}
 
+	/**
+	 * provades user with several options to 
+	 * control queues for each veterinarian
+	 * @param queue
+	 */
 	public void optionsMenu(Queue queue) {
 		int option = -1;
 

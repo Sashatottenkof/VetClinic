@@ -7,11 +7,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import Animals.Animal;
-import Cli.Cli;
+import Excepcions.Exceptions;
 
 public class SearchAnimals {
 
 	ArrayList<Animal> allAnimals;
+	BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 
 	public SearchAnimals(ArrayList<Animal> allAnimals) {
 
@@ -19,25 +20,39 @@ public class SearchAnimals {
 
 	}
 
-	public void userRequest() throws IOException {
+	public void userRequest() {
 		String Name = null;
-		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Please type in a name of an animal: ");
 
-		try {
-			Name = r.readLine();
+		do {
 
-		} catch (IOException e) {
+			do {
+				System.out.println("Please type in a name of an animal:" + "\r\n" + "(Press 0 to come back)");
+				try {
+					Name = r.readLine();
+			
+					if (Name.matches(".*\\d.*") && !Name.matches("0")) {
+						throw new Exceptions.OnlyCharacters();
+					}
 
-			e.getMessage();
-		}
+				} catch (IOException | Exceptions.OnlyCharacters e) {
+					System.out.println(e.getMessage());
 
-		if (Name.matches(".*\\d.*")) {
+				}
 
-			throw new IOException("You have to use only characters");
-		}
+			} while (!validName(Name));
 
-		searching(Name);
+			// if user insert "0" we return to previous menu
+			if (Name.matches("0")) {
+				break;
+			}
+
+			searching(Name);
+
+		} while (!Name.matches("0"));
+	}
+
+	public boolean validName(String Name) {
+		return (!Name.matches(".*\\d.*") || Name.matches("0"));
 	}
 
 	public void searching(String Name) {

@@ -6,6 +6,7 @@ import java.util.Random;
 public class StaffSalaryGen {
 	int salary;
 	Random r = new Random();
+	
 	/** generate random salary level
 	 * @return
 	 */

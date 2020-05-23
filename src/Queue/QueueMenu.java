@@ -43,7 +43,7 @@ public class QueueMenu {
 		for (int i = 0; i < operations.length; i++) {
 			System.out.println("Press " + (i + 1) + " to " + operations[i]);
 		}
-		System.out.println("Press 0 to come back to main menu.");
+		System.out.println("Press 0 to come back.");
 
 	}
 

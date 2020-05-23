@@ -8,7 +8,7 @@ public class Queue {
 	private int rear;
 	private int capacity;
 	private int size;
-	Animal animalQueue[];
+	private Animal animalQueue[];
 	
 	
 	
@@ -24,6 +24,10 @@ public class Queue {
 	
 	}
 
+	/**
+	 * adds animal in a queue
+	 * @param animal
+	 */
 	public void enQueue(Animal animal) {
 
 		if (!isFull()) {
@@ -38,6 +42,9 @@ public class Queue {
 
 	}
 
+	/**
+	 * Deletes animal from a queue
+	 */
 	public void deQueue() {
 		if (!isEmpty()) {
 			front = (front + 1) % capacity;
@@ -59,6 +66,9 @@ public class Queue {
 		return size == capacity;
 	}
 
+	/**
+	 * Prints a queue
+	 */
 	public void show() {
 		int n = 1;
 		System.out.println("Animals in queue: " + "\r\n");

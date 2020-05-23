@@ -12,12 +12,12 @@ import Creator.Animals.DogCreator;
 import Creator.Animals.TigerCreator;
 import ReadFromFile.ReadAnimals;
 import ReadFromFile.ReadAnimalsDiseases;
-
+ //this class is used to create all animals for the Clinic
 public class AnimalsAssembler {
 
-	int NumberOfCats = 300;
-	int NumberOfDogs = 350;
-	int NumberOfTigers = 350;
+	private final int NumberOfCats = 300;
+	private final int NumberOfDogs = 350;
+	private final int NumberOfTigers = 350;
 
 	ArrayList<String> animNamesList = new ArrayList<String>();
 	ArrayList<String> animDiseasesList = new ArrayList<String>();
@@ -44,6 +44,9 @@ public class AnimalsAssembler {
 		creatAllAnimalsList();
 	}
 
+	/**
+	 *  Reads the file with animals names
+	 */
 	public void readAnimalNames() {
 		try {
 			animNamesList = readNames.getAnimNamesList();
@@ -54,6 +57,9 @@ public class AnimalsAssembler {
 
 	}
 
+	/**
+	 *  Reads the file with diseases
+	 */
 	public void readAnimalDiseases() {
 		try {
 			animDiseasesList = readDisease.getAnimDiseasesList();
@@ -64,12 +70,20 @@ public class AnimalsAssembler {
 
 	}
 
+	/**
+	 *  The method creates Array list of Cats by calling "getAnimal" method
+	 *  as many times as we need cats
+	 */
 	public void createCatsList() {
 		for (int i = 0; i < NumberOfCats; i++) {
 			catsList.add((Cat) newCat.getAnimal(animNamesList, animDiseasesList));
 		}
 	}
 
+	/**
+	 * The method creates Array list of Dogs by calling "getAnimal" method
+	 *  as many times as we need Dogs
+	 */
 	public void createDogsList() {
 		for (int i = 0; i < NumberOfDogs; i++) {
 			dogsList.add((Dog) newDog.getAnimal(animNamesList, animDiseasesList));
@@ -77,6 +91,10 @@ public class AnimalsAssembler {
 
 	}
 
+	/**
+	 * The method creates Array list of Tigers by calling "getAnimal" method
+	 *  as many times as we need tigers
+	 */
 	public void createTigersList() {
 		for (int i = 0; i < NumberOfTigers; i++) {
 			tigersList.add((Tiger) newTiger.getAnimal(animNamesList, animDiseasesList));
@@ -84,6 +102,9 @@ public class AnimalsAssembler {
 
 	}
 
+	/**
+	 * This method creates a list of all animals in the clinic by combining list of each animal type
+	 */
 	public void creatAllAnimalsList() {
 
 		allAnimals.addAll(catsList);

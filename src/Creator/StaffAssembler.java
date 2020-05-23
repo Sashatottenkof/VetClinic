@@ -1,6 +1,7 @@
 package Creator;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
 import Creator.Staff.NurseCreator;
@@ -16,14 +17,17 @@ import Staff.Administration.Sysadmin;
 import Staff.Medical.Nurse;
 import Staff.Medical.Trainee;
 import Staff.Medical.Vet;
+		
+	//this class is used to create all staff for the Clinic
 
 public class StaffAssembler {
+	
 
-	private int NumberOfSysadmins = 5;
-	private int NumberOfReceptionists = 5;
-	private int NumberOfNurses = 15;
-	private int NumberOfVets = 5;
-	private int NumberOfTrainees = 10;
+	private final int NumberOfSysadmins = 5;
+	private final int NumberOfReceptionists = 5;
+	private final int NumberOfNurses = 15;
+	private final int NumberOfVets = 5;
+	private final int NumberOfTrainees = 10;
 
 	SysadminCreator newSysadmin = new SysadminCreator();
 	ReceptionistCreator newReceptionist = new ReceptionistCreator();
@@ -49,14 +53,17 @@ public class StaffAssembler {
 	 */
 	public StaffAssembler() {
 		ReadStaffNames();
-		getSysadminList();
-		getReceptionList();
-		getNurseList();
-		getVetList();
-		getTraineeList();
-		getListOfStaff();
+		createSysadminList();
+		createReceptionList();
+		createNurseList();
+		createVetList();
+		createTraineeList();
+		createListOfStaff();
 	}
 
+	/**
+	 * Reads the file with names
+	 */
 	public void ReadStaffNames() {
 
 		try {
@@ -68,42 +75,65 @@ public class StaffAssembler {
 
 	}
 
-	public void getSysadminList() {
+	/**
+	 *  The method creates Array list of Sysadmins by calling "getStaffMember" method
+	 *  as many times as we need Sysadmins
+	 */
+	public void createSysadminList() {
 		for (int i = 0; i < NumberOfSysadmins; i++) {
 			sysadminsList.add((Sysadmin) newSysadmin.getStaffMember(ListOfNames));
 		}
 
 	}
 
-	public void getReceptionList() {
+	/**
+	 *   The method creates Array list of Receptionists by calling "getStaffMember" method
+	 *  as many times as we need Receptionists
+	 */
+	public void createReceptionList() {
 		for (int i = 0; i < NumberOfReceptionists; i++) {
 			receptionistList.add((Receptionist) newReceptionist.getStaffMember(ListOfNames));
 		}
 
 	}
 
-	public void getNurseList() {
+	/**
+	 * The method creates Array list of Nurses by calling "getStaffMember" method
+	 *  as many times as we need Nurses
+	 */
+	public void createNurseList() {
 		for (int i = 0; i < NumberOfNurses; i++) {
 			nursesstList.add((Nurse) newNurse.getStaffMember(ListOfNames));
 		}
 
 	}
 
-	public void getVetList() {
+	/**
+	 * The method creates Array list of Veterinarians by calling "getStaffMember" method
+	 *  as many times as we need Veterinarians
+	 */
+	public void createVetList() {
 		for (int i = 0; i < NumberOfVets; i++) {
 			vetsList.add((Vet) newVet.getStaffMember(ListOfNames));
 		}
 
 	}
 
-	public void getTraineeList() {
+	/**
+	 *  The method creates Array list of Trainees by calling "getStaffMember" method
+	 *  as many times as we need Trainees
+	 */
+	public void createTraineeList() {
 		for (int i = 0; i < NumberOfTrainees; i++) {
 			traineesList.add((Trainee) newTrainee.getStaffMember(ListOfNames));
 		}
 
 	}
 
-	public void getListOfStaff() {
+	/**
+	 * Create a list of all Staff in clinic by adding all lists of each employee type
+	 */
+	public void createListOfStaff() {
 		allStaff.addAll(sysadminsList);
 		allStaff.addAll(receptionistList);
 		allStaff.addAll(vetsList);
@@ -111,6 +141,9 @@ public class StaffAssembler {
 		allStaff.addAll(traineesList);
 	}
 
+	/**
+	 * Prints all staff
+	 */
 	public void showAllStaff() {
 		for (Staff v : allStaff) {
 			System.out.println(v.toString());
@@ -118,6 +151,9 @@ public class StaffAssembler {
 		}
 	}
 
+	/**
+	 * Prints Sysadmins
+	 */
 	public void showSysadmins() {
 		for (Staff v : sysadminsList) {
 			System.out.println(v.toString());
@@ -125,6 +161,9 @@ public class StaffAssembler {
 		}
 	}
 
+	/**
+	 * Prints Receptionists
+	 */
 	public void showReceptionists() {
 		for (Staff v : receptionistList) {
 			System.out.println(v.toString());
@@ -132,6 +171,9 @@ public class StaffAssembler {
 		}
 	}
 
+	/**
+	 * Prints Nurses
+	 */
 	public void showNurses() {
 		for (Staff v : nursesstList) {
 			System.out.println(v.toString());
@@ -139,6 +181,9 @@ public class StaffAssembler {
 		}
 	}
 
+	/**
+	 * Prints Veterinarians
+	 */
 	public void showVets() {
 		for (Staff v : vetsList) {
 			System.out.println(v.toString());
@@ -146,6 +191,9 @@ public class StaffAssembler {
 		}
 	}
 
+	/**
+	 * Prints Trainees
+	 */
 	public void showTrainees() {
 		for (Staff v : traineesList) {
 			System.out.println(v.toString());
@@ -164,7 +212,7 @@ public class StaffAssembler {
 		this.allStaff = allStaff;
 	}
 
-	/**We will use it to assign animals to each of those vets
+	/**We will use it to assign animals to each of those Vets
 	 * @return
 	 */
 	public ArrayList<Vet> getVetsList() {
@@ -173,6 +221,22 @@ public class StaffAssembler {
 
 	public void setVetsList(ArrayList<Vet> vetsList) {
 		this.vetsList = vetsList;
+	}
+
+	public ArrayList<Sysadmin> getSysadminsList() {
+		return sysadminsList;
+	}
+
+	public void setSysadminsList(ArrayList<Sysadmin> sysadminsList) {
+		this.sysadminsList = sysadminsList;
+	}
+
+	public ArrayList<Receptionist> getReceptionistList() {
+		return receptionistList;
+	}
+
+	public void setReceptionistList(ArrayList<Receptionist> receptionistList) {
+		this.receptionistList = receptionistList;
 	}
 
 }
